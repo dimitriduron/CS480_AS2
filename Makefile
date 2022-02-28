@@ -12,8 +12,8 @@ CXXFLAGS=-std=c++11 -g
 # First target is the one executed if you just type make
 # make target specifies a specific target
 # $^ is an example of a special variable.  It substitutes all dependencies
-main : dicttree.o countwords.o populatetree.o main.o -lpthread
-	$(CXX) $(CXXFLAGS) -o main $^
+dicttest : dicttree.o countwords.o populatetree.o main.o -lpthread
+	$(CXX) $(CXXFLAGS) -o dicttest $^
 
 
 dicttree.o:		dicttree.h dicttree.cpp
