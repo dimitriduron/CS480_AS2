@@ -63,12 +63,12 @@ int main(int argc, char **argv){
 
     prevArg = argv[1];
     if(access(prevArg.c_str(), F_OK) != 0){
-        cout << "Unable to open " << prevArg << endl;
+        cout << "Unable to open <<" << prevArg << ">>" << endl;
         return 0;
     }
     prevArg = argv[2];
     if(access(prevArg.c_str(), F_OK) != 0){
-        cout << "Unable to open " << prevArg << endl;
+        cout << "Unable to open <<" << prevArg << ">>" << endl;
         return 0;
     }
     

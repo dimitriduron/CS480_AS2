@@ -35,6 +35,9 @@ void *startCountWords(void *tpAddr){
             //word doesnt reach the do while condition so this if prevents any seg faults
             if(word == NULL) break;
             
+            //we know we have a word here so now we can iterate words in file
+            tp->wordCountInFile[1]++;
+
             //change to lower for correct input
             //cout << word << " ";
             for(int i = 0; word[i] != '\0'; i++){
@@ -45,7 +48,7 @@ void *startCountWords(void *tpAddr){
         }while(word != NULL);
     }
     testFile.close();
-    cout << "finishing count thread" << endl;
+    cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
     tp->finished[1] = true;
     return NULL;
 }
