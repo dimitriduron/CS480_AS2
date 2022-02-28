@@ -23,7 +23,7 @@ void *startCountWords(void *tpAddr){
         doesn't check soon enough so I put a quick if statement after word is set within the loop
     */
     while(getline(testFile, line)){
-        tp->numOfCharsProcessedFromFile[1] += line.length();
+        tp->numOfCharsProcessedFromFile[1] += line.length() + 1;
         wordSet = false;
         do{
             strcpy(delimWord, line.c_str());

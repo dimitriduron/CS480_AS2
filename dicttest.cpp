@@ -1,5 +1,6 @@
 #include <pthread.h>
 #include <unistd.h>
+#include <sys/stat.h>
 #include "dicttree.h"
 using namespace std;
 
@@ -81,13 +82,49 @@ int main(int argc, char **argv){
     if(h != -1) tp->h = h;
     if(n != -1) tp->n = n;
 
+    //count the size of the input files to put the size into the bigger struct
+    struct stat st;
+    if(stat(argv[1], &st) == 0) tp->totalNumOfCharsInFile[0] = st.st_size;
+    if(stat(argv[2], &st) == 0) tp->totalNumOfCharsInFile[1] = st.st_size;
+
+    //initilize and start the threads
     pthread_t threads[2];
-    
     int populatetree = pthread_create(&threads[0], NULL, startPopulateTree, tp);
     int countwords = pthread_create(&threads[1], NULL, startCountWords, tp);
     
+    // progress bar section
+    // each file will continuously be checked for how far along the characters have been processsed
+    // each - or # signifies (100/p)% where p is the optional flag
+    // n is being reused to signify how many times - or # has been placed, used as a math marker in a way
+    int complete[2] = {0, 0};
+    int hCount[2] = {0, 0};
+    int count[2] = {1, 1};
+    int percent = 100/tp->p;
+    
     while(!(tp->finished[0] && tp->finished[1])){
-
+        complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
+        complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
+        // given a thread might progress really fast, i made the sections repeatly check until it doesnt work
+        while(complete[0] >= percent*count[0]){
+            if(count[0]%tp->h == 0){
+                cout.flush() << "#";
+            }
+            else{
+                cout.flush() << "-";
+            }
+            count[0]++;
+            if(complete[0] == 100) cout.flush() << endl;
+        }
+        while(complete[1] >= percent*count[1]){
+            if(count[1]%tp->h == 0){
+                cout.flush() << "#";
+            }
+            else{
+                cout.flush() << "-";
+            }
+            count[1]++;
+            if(complete[1] >= 99) cout.flush() << endl;
+        }
     }
 
     cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;

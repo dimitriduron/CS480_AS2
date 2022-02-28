@@ -11,7 +11,7 @@ void *startPopulateTree(void *tpAddr){
 
     //dump the words from the inputted dictionary into the
     while (getline(dictFile, line)){
-        tp->numOfCharsProcessedFromFile[0] += line.length();
+        tp->numOfCharsProcessedFromFile[0] += line.length() + 1;
         addWord(tp->root, line, 0);
         tp->wordCountInFile[0]++;
     }

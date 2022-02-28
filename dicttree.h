@@ -24,7 +24,7 @@ int countWords(dictNode*, string, int);
 struct threadParam{
     struct dictNode *root;
     long totalNumOfCharsInFile[2] = {0, 0};
-    long *numOfCharsProcessedFromFile[2] = {0, 0};
+    long numOfCharsProcessedFromFile[2] = {0, 0};
     long wordCountInFile[2] = {0, 0};
     string fileName[2];
     bool finished[2] = {false, false};
