@@ -12,6 +12,7 @@ void *startCountWords(void *tpAddr){
     char delimWord[100];
     char* word;
     bool wordSet;
+    int num;
     
     /*
     this section will read in the lines of the test file
@@ -22,6 +23,7 @@ void *startCountWords(void *tpAddr){
         doesn't check soon enough so I put a quick if statement after word is set within the loop
     */
     while(getline(testFile, line)){
+        tp->numOfCharsProcessedFromFile[1] += line.length();
         wordSet = false;
         do{
             strcpy(delimWord, line.c_str());
@@ -43,12 +45,14 @@ void *startCountWords(void *tpAddr){
             for(int i = 0; word[i] != '\0'; i++){
                 word[i] = tolower(word[i]);
             }
-
+            
+            num = countWords(tp->root, word, 0);
+            
             //cout << countWords(tp->root, word, 0) << endl;
         }while(word != NULL);
     }
     testFile.close();
-    cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
+    
     tp->finished[1] = true;
     return NULL;
 }

@@ -86,7 +86,12 @@ int main(int argc, char **argv){
     int populatetree = pthread_create(&threads[0], NULL, startPopulateTree, tp);
     int countwords = pthread_create(&threads[1], NULL, startCountWords, tp);
     
-    while(!(tp->finished[0] && tp->finished[1]));
+    while(!(tp->finished[0] && tp->finished[1])){
+
+    }
+
+    cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
+    cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
 
     return 0;
 }

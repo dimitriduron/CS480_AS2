@@ -23,6 +23,7 @@ int countWords(dictNode*, string, int);
 //All of the arrays reference the dict for index 0 and test file for index 1
 struct threadParam{
     struct dictNode *root;
+    long totalNumOfCharsInFile[2] = {0, 0};
     long *numOfCharsProcessedFromFile[2] = {0, 0};
     long wordCountInFile[2] = {0, 0};
     string fileName[2];

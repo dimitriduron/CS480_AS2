@@ -11,11 +11,12 @@ void *startPopulateTree(void *tpAddr){
 
     //dump the words from the inputted dictionary into the
     while (getline(dictFile, line)){
+        tp->numOfCharsProcessedFromFile[0] += line.length();
         addWord(tp->root, line, 0);
         tp->wordCountInFile[0]++;
     }
     dictFile.close();
-    cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
+    
     tp->finished[0] = true;
     return NULL;
 }
