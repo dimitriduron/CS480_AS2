@@ -116,7 +116,7 @@ int main(int argc, char **argv){
             cout.flush();
             if(complete[0] >= 99){
                 cout << endl;
-                cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
+                //cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
             }
         }
         while(complete[1] >= percent*count[1]){
@@ -130,7 +130,7 @@ int main(int argc, char **argv){
             cout.flush();
             if(complete[1] >= 99){
                 cout << endl;
-                cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
+                //cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
             }
         }
     }
