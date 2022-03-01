@@ -1,6 +1,6 @@
 #include "dicttree.h"
 
-//This thread will populate the root node with words from the dictionary file from the input
+//This thread will populate the root node with words from the dictionary file specified in the command line
 void *startPopulateTree(void *tpAddr){
     struct threadParam *tp;
     tp = (struct threadParam *)tpAddr;

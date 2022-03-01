@@ -1,14 +1,18 @@
 #include "dicttree.h"
 
 void *startCountWords(void *tpAddr){
+    //turn the void object into type threadParam
     struct threadParam *tp;
     tp = (struct threadParam *)tpAddr;
-    string line;
 
     //characters we want to seperate 
     const char* delimiters = "\n\r !\"#$%&()*+,-./0123456789:;<=>?@[\\]^_`{|}~";
 
+    //needed variables within the code block
     ifstream testFile(tp->fileName[1]);
+    ofstream newFile("count_words.txt");
+    string line;
+    string wordStr;
     char delimWord[100];
     char* word;
     bool wordSet;
@@ -36,21 +40,23 @@ void *startCountWords(void *tpAddr){
             }
             //word doesnt reach the do while condition so this if prevents any seg faults
             if(word == NULL) break;
-            
-            //we know we have a word here so now we can iterate words in file
             tp->wordCountInFile[1]++;
 
+            wordStr = word;
             //change to lower for correct input
-            //cout << word << " ";
             for(int i = 0; word[i] != '\0'; i++){
                 word[i] = tolower(word[i]);
             }
             
             num = countWords(tp->root, word, 0);
+
+            if(num >= tp->n){
+                newFile << wordStr << " " << num << endl;
+            }
             
-            //cout << countWords(tp->root, word, 0) << endl;
         }while(word != NULL);
     }
+    newFile.close();
     testFile.close();
     
     tp->finished[1] = true;

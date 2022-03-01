@@ -97,14 +97,10 @@ int main(int argc, char **argv){
     // each - or # signifies (100/p)% where p is the optional flag
     // n is being reused to signify how many times - or # has been placed, used as a math marker in a way
     int complete[2] = {0, 0};
-    int hCount[2] = {0, 0};
     int count[2] = {1, 1};
     int percent = 100/tp->p;
     
-    //while(!(tp->finished[0] && tp->finished[1])){
-        //complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
-        //complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
-        
+    //first progres bar runs until finished
     while(!tp->finished[0]){
         complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
 
@@ -121,9 +117,9 @@ int main(int argc, char **argv){
                 cout << endl;
         }
     }
-    
     cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
-    
+
+    //second progress bar runs until finished
     while(!tp->finished[1]){
         complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
 
@@ -140,7 +136,6 @@ int main(int argc, char **argv){
                 cout << endl;
         }
     }
-    
     cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
 
     return 0;
