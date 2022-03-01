@@ -122,6 +122,8 @@ int main(int argc, char **argv){
         }
     }
     
+    cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
+    
     while(!tp->finished[1]){
         complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
 
@@ -138,7 +140,7 @@ int main(int argc, char **argv){
                 cout << endl;
         }
     }
-    cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
+    
     cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
 
     return 0;
