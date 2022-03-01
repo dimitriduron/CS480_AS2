@@ -105,36 +105,39 @@ int main(int argc, char **argv){
         complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
         complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
         // given a thread might progress really fast, i made the sections repeatly check until it doesnt work
-        while(complete[0] >= percent*count[0]){
-            if(count[0]%tp->h == 0){
-                cout << "#";
+        
+        if(complete[0] >= percent*count[0]){
+            for(int i = 1; i <= count[0]; i++){
+                if(i%tp->h == 0){
+                    cout << "#";
+                }
+                else{
+                    cout << "-";
+                }
             }
-            else{
-                cout << "-";
-            }
+            
+            if(complete[0] < 99)    cout << "\r";
+            else                    cout << endl;
+            cout.flush();
             count[0]++;
-            cout.flush();
-            if(complete[0] >= 99){
-                cout << endl;
-                //cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
-            }
         }
-        while(complete[1] >= percent*count[1]){
-            if(count[1]%tp->h == 0){
-                cout << "#";
+        
+        if(complete[1] >= percent*count[1]){
+            for(int i = 1; i <= count[1]; i++){
+                if(i%tp->h == 0){
+                    cout << "#";
+                }
+                else{
+                    cout << "-";
+                }
             }
-            else{
-                cout << "-";
-            }
-            count[1]++;
+            
+            if(complete[1] < 99)    cout << "\r";
+            else                    cout << endl;
             cout.flush();
-            if(complete[1] >= 99){
-                cout << endl;
-                //cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
-            }
+            count[1]++;
         }
     }
-
     cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
     cout << "There are " << tp->wordCountInFile[1] << " words in " << tp->fileName[1] << "." << endl;
 
