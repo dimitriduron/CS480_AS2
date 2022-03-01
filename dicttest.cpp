@@ -107,23 +107,25 @@ int main(int argc, char **argv){
         // given a thread might progress really fast, i made the sections repeatly check until it doesnt work
         while(complete[0] >= percent*count[0]){
             if(count[0]%tp->h == 0){
-                cout.flush() << "#";
+                cout << "#";
             }
             else{
-                cout.flush() << "-";
+                cout << "-";
             }
             count[0]++;
-            if(complete[0] == 100) cout.flush() << endl;
+            cout.flush();
+            if(complete[0] >= 99) cout << endl;
         }
         while(complete[1] >= percent*count[1]){
             if(count[1]%tp->h == 0){
-                cout.flush() << "#";
+                cout << "#";
             }
             else{
-                cout.flush() << "-";
+                cout << "-";
             }
             count[1]++;
-            if(complete[1] >= 99) cout.flush() << endl;
+            cout.flush();
+            if(complete[1] >= 99) cout << endl;
         }
     }
 
