@@ -101,11 +101,13 @@ int main(int argc, char **argv){
     int count[2] = {1, 1};
     int percent = 100/tp->p;
     
-    while(!(tp->finished[0] && tp->finished[1])){
-        complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
-        complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
-        // given a thread might progress really fast, i made the sections repeatly check until it doesnt work
+    //while(!(tp->finished[0] && tp->finished[1])){
+        //complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
+        //complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
         
+    while(!tp->finished[0]){
+        complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
+
         if(complete[0] >= percent*count[0]){
             for(int i = 1; i <= count[0]; i++){
                 if(i%tp->h == 0){
@@ -121,6 +123,10 @@ int main(int argc, char **argv){
             cout.flush();
             count[0]++;
         }
+    }
+    
+    while(!tp->finished[1]){
+        complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
         
         if(complete[1] >= percent*count[1]){
             for(int i = 1; i <= count[1]; i++){
