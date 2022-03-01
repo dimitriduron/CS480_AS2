@@ -108,40 +108,34 @@ int main(int argc, char **argv){
     while(!tp->finished[0]){
         complete[0] = (tp->numOfCharsProcessedFromFile[0]*100)/tp->totalNumOfCharsInFile[0];
 
-        if(complete[0] >= percent*count[0]){
-            for(int i = 1; i <= count[0]; i++){
-                if(i%tp->h == 0){
-                    cout << "#";
-                }
-                else{
-                    cout << "-";
-                }
+        while(complete[0] >= percent*count[0]){
+            if(count[0]%tp->h == 0){
+                cout << "#";
             }
-            
-            if(complete[0] < 99)    cout << "\r";
-            else                    cout << endl;
-            cout.flush();
+            else{
+                cout << "-";
+            }
             count[0]++;
+            cout.flush();
+            if(complete[0] >= 99)
+                cout << endl;
         }
     }
     
     while(!tp->finished[1]){
         complete[1] = (tp->numOfCharsProcessedFromFile[1]*100)/tp->totalNumOfCharsInFile[1];
-        
-        if(complete[1] >= percent*count[1]){
-            for(int i = 1; i <= count[1]; i++){
-                if(i%tp->h == 0){
-                    cout << "#";
-                }
-                else{
-                    cout << "-";
-                }
+
+        while(complete[1] >= percent*count[1]){
+            if(count[1]%tp->h == 0){
+                cout << "#";
             }
-            
-            if(complete[1] < 99)    cout << "\r";
-            else                    cout << endl;
-            cout.flush();
+            else{
+                cout << "-";
+            }
             count[1]++;
+            cout.flush();
+            if(complete[1] >= 99)
+                cout << endl;
         }
     }
     cout << "There are " << tp->wordCountInFile[0] << " words in " << tp->fileName[0] << "." << endl;
