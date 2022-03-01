@@ -1,4 +1,3 @@
-
 #ifndef DICTTREE_H_
 #define DICTTREE_H_
 
@@ -32,5 +31,4 @@ struct threadParam{
     int h = 10;
     int n = 1;
 };
-
 #endif
